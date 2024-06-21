@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="flex input-group flex-column align-items-center">
+    <label class="flex mb-3">Register</label>
+    <p-floatLabel class="flex mb-5 input-width">
+      <input pInputText id="firstName" [(ngModel)]="firstNameValue" />
+      <label for="firstName">First Name</label>
+    </p-floatLabel>
+    <p-floatLabel class="flex mb-5 input-width">
+      <input pInputText id="LastName" [(ngModel)]="lastNameValue" />
+      <label for="lastName">Last Name</label>
+    </p-floatLabel>
+    <p-floatLabel class="flex mb-5 input-width">
+      <input pInputText id="email" [(ngModel)]="emailValue" />
+      <label for="email">Email</label>
+    </p-floatLabel>
+    <p-floatLabel class="flex mb-5 input-width">
+      <p-password
+        class="flex input-width"
+        id="password"
+        [(ngModel)]="passwordValue"
+        [feedback]="true"
+        [toggleMask]="true"
+        weakLabel="Too simple"
+        mediumLabel="Average complexity"
+        strongLabel="Complex password"
+      />
+      <label for="password">Password</label>
+    </p-floatLabel>
+
+    <div class="flex flex-row input-width">
+      <button
+        pButton
+        pRipple
+        label="Cancel"
+        severity="secondary"
+        class="flex mr-2 button-width-small"
+        (click)="callCancel()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Confirm"
+        class="flex button-width-large"
+        (click)="callConfirm()"
+      ></button>
+    </div>
+  </div>
+</div>

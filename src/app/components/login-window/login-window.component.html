@@ -1,0 +1,37 @@
+<div class="container">
+<div class="flex flex-column inner-div-width">
+  <div class="login-font flex align-self-center mb-5 header">[TODO_Name]</div>
+  <div class="flex input-group flex-column align-items-center">
+    <p-floatLabel class="flex mb-5 input-width">
+      <input pInputText id="email" [(ngModel)]="emailValue" />
+      <label for="email">Email</label>
+    </p-floatLabel>
+    <p-floatLabel class="flex mb-5 input-width">
+        <p-password 
+        class="flex input-width"
+        id="password" 
+        [(ngModel)]="passwordValue" 
+        [feedback]="false" 
+        [toggleMask]="true"  />
+        <label for="password">Password</label>
+    </p-floatLabel>
+    <div class="flex flex-row input-width">
+        <button
+        pButton
+        pRipple
+        label="Login"
+        class="flex mr-2 button-width-large"
+        (click)="callLogin()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Register"
+        severity="secondary"
+        class="flex button-width-small"
+        (click)="callRegister()"
+      ></button>
+    </div>
+  </div>
+</div>
+</div>
