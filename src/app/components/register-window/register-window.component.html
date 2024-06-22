@@ -44,5 +44,14 @@
         (click)="callConfirm()"
       ></button>
     </div>
+    <label
+      *ngIf="errorLabelText != null && errorLabelText.length > 0"
+      class="flex error-label mt-2"
+      >{{ errorLabelText }}</label
+    >
+    <div
+      *ngIf="errorLabelText == null || errorLabelText.length <= 0"
+      class="flex mt-4"
+    ></div>
   </div>
 </div>

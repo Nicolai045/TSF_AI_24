@@ -1,42 +1,48 @@
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 97vh;
-    width: 100%;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 97vh;
+  width: 100%;
 }
 
-.inner-div-width{
-    width: 100%;
-    margin-bottom: 10rem;
+.inner-div-width {
+  width: 100%;
+  margin-bottom: 10rem;
 }
 
-::ng-deep .p-password{
-    width: 100%;
+::ng-deep .p-password {
+  width: 100%;
 }
 
-.input-width{
-    width: 100%;
-    max-width: 30rem;
-    min-width: 10rem;
+.input-width {
+  width: 100%;
+  max-width: 30rem;
+  min-width: 10rem;
 }
 
-.button-width-small{
-    width: 30%;
+.button-width-small {
+  width: 30%;
 }
 
-.button-width-large{
-    width: 100%;
+.button-width-large {
+  width: 100%;
 }
 
-.input-group{
-    width: 100%;
-    margin-bottom: 10rem;
+.input-group {
+  width: 100%;
+  margin-bottom: 10rem;
 }
-::ng-deep .p-float-label{
-    width: 100%;
+::ng-deep .p-float-label {
+  width: 100%;
 }
 
-::ng-deep .p-inputtext{
-    width: 100%;
+::ng-deep .p-inputtext {
+  width: 100%;
+}
+
+.error-label {
+  font-size: smaller;
+  color: red;
+  font-weight: bold;
 }

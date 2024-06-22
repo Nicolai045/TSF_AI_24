@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
@@ -19,9 +22,15 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MessageServiceService } from './services/message-service/message-service.service';
 import { RegisterWindowComponent } from './components/register-window/register-window.component';
 import { MainWindowComponent } from './components/main-window/main-window.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, LoginWindowComponent, RegisterWindowComponent, MainWindowComponent],
+  declarations: [
+    AppComponent,
+    LoginWindowComponent,
+    RegisterWindowComponent,
+    MainWindowComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,7 +44,11 @@ import { MainWindowComponent } from './components/main-window/main-window.compon
     PasswordModule,
     SocketIoModule.forRoot(config),
   ],
-  providers: [provideClientHydration(), MessageServiceService],
+  providers: [
+    provideClientHydration(),
+    provideHttpClient(),
+    MessageServiceService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

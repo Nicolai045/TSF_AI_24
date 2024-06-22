@@ -1,4 +1,5 @@
-from flask import request, jsonify
+from flask import json, request, jsonify, session
+from flask_socketio import send
 from config import app,db,socketio
 from models import User
 
@@ -11,12 +12,69 @@ def on_disconnect():
     #socketio.emit('current_users', clients)
     print("User disconnected!\nThe users are: ", clients)
 
-#Meldet einen Client auf dem Server an.
+def emitResponse(eventId,infoMessage):
+    socketio.emit('response',{'eventId':eventId ,'info':infoMessage})
+
 @socketio.on('sign_in')
-def user_sign_in():
-    #clients[request.sid] = client_name['name']
-    #socketio.emit('current_users', clients)
-    print("New user sign in!\nThe users are: ", clients)
+def sign_in(data):
+    email = data['email']
+    password = data['password']
+
+    if not email or not password:
+        emitResponse(400,'Please fill in all fields!')
+    
+    user = User.query.get({"email":email})
+
+    if user is None:
+        emitResponse(400,'Email does not exist!')
+    
+    if user['email'] is not password:
+        emitResponse(400,'Password is not correct.')
+    
+    emitResponse(200,'Login Successfull')
+
+#Meldet einen Client auf dem Server an.
+@socketio.on('create_user')
+def create_user(user):
+    first_name = user['firstName']
+    last_name = user['lastName']
+    email = user['email']
+    password = user['password']
+
+    if not first_name or not last_name or not email or not password:
+        emitResponse(400,'Please fill in all requested fields')
+
+    new_user = User(first_name = first_name, last_name = last_name,email = email, password = password)
+    
+    try:
+        db.session.add(new_user)
+        db.session.commit()
+    except Exception as exception:
+        emitResponse(400,exception)
+    
+    emitResponse(200,'User was created')
+
+@app.route("/crud/login_user", methods=["POST"])
+def login_user():
+    data = request.json['data']
+    email = data['email']
+    password = data['password']
+
+    if not email or not password:
+        return jsonify({"message":"Please fill in all fields!"}),400
+    
+    user = db.session.query(User).filter_by(email=email).first()
+    #print(user)
+
+    if user is None:
+        return jsonify({"message":"The requested email does not exist!"}),400
+    
+    print(user.password)
+    if user.password != password:
+        return jsonify({"message":"Password is not correct!"}),400
+    
+    return jsonify({"message":"Login Successfull"}),200
+
 
 #TODO in socket umschreiben.
 @app.route("/get_all_users",methods=["GET"])
@@ -25,12 +83,13 @@ def get_Users():
     json_users = list(map(lambda x: x.to_json(), users))
     return jsonify({"users":json_users})
 
-@app.route("/create_user",methods=["POST"])
+@app.route("/crud/create_user",methods=["POST"])
 def create_User():
-    first_name = request.json.get("firstName")
-    last_name = request.json.get("lastName")
-    email = request.json.get("email")
-    password = request.json.get("password")
+    data = request.json['data']
+    first_name = data['firstName']
+    last_name = data['lastName']
+    email = data['email']
+    password = data['password']
 
     if not first_name or not last_name or not email or not password:
         return (jsonify({"message":"You must include a first name, last name, email and password"}),
