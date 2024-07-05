@@ -5,7 +5,7 @@ import { RegisterWindowComponent } from './components/register-window/register-w
 import { MainWindowComponent } from './components/main-window/main-window.component';
 
 const routes: Routes = [
-  { path: '', component: LoginWindowComponent },
+  { path: '', component: MainWindowComponent },
   { path: 'login', component: LoginWindowComponent },
   { path: 'register', component: RegisterWindowComponent },
   { path: 'main-window', component: MainWindowComponent },

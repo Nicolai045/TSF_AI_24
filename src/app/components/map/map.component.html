@@ -1,0 +1,8 @@
+<div class="flex flex-column map-container">
+  <div class="flex map mb-2" leaflet [leafletOptions]="options"></div>
+  <div class="flex flex-row footer-div">
+    <p-button class="mr-2" [label]="managementPestButtonName"></p-button>
+    <p-button class="mr-2" [label]="deployPestButtonName"></p-button>
+    <p-button [label]="cancelSurveyButtonName"></p-button>
+  </div>
+</div>

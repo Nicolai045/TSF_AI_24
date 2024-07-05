@@ -1,0 +1,11 @@
+.map {
+  height: 100%;
+  background-color: black;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+}

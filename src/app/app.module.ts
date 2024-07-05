@@ -23,6 +23,11 @@ import { MessageServiceService } from './services/message-service/message-servic
 import { RegisterWindowComponent } from './components/register-window/register-window.component';
 import { MainWindowComponent } from './components/main-window/main-window.component';
 import { provideHttpClient } from '@angular/common/http';
+import { MenubarModule } from 'primeng/menubar';
+import { Menu, MenuModule } from 'primeng/menu';
+import { MapComponent } from './components/map/map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { Panel, PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -30,6 +35,7 @@ import { provideHttpClient } from '@angular/common/http';
     LoginWindowComponent,
     RegisterWindowComponent,
     MainWindowComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +43,13 @@ import { provideHttpClient } from '@angular/common/http';
     BrowserAnimationsModule,
     ButtonModule,
     CardModule,
+    MenuModule,
     InputTextModule,
     FormsModule,
     FloatLabelModule,
+    LeafletModule,
+    MenubarModule,
+    PanelModule,
     FilterPipeModule,
     PasswordModule,
     SocketIoModule.forRoot(config),

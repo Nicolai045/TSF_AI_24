@@ -5,7 +5,7 @@ from models import User
 
 clients = {}
 
-# Medlet einen Client auf dem Server ab.
+#TODO entfernen Medlet einen Client auf dem Server ab.
 @socketio.on('disconnect')
 def on_disconnect():
     #clients.pop(request.sid,'No user found')
@@ -15,6 +15,7 @@ def on_disconnect():
 def emitResponse(eventId,infoMessage):
     socketio.emit('response',{'eventId':eventId ,'info':infoMessage})
 
+#TODO entfernen ? Maybe
 @socketio.on('sign_in')
 def sign_in(data):
     email = data['email']
@@ -33,7 +34,7 @@ def sign_in(data):
     
     emitResponse(200,'Login Successfull')
 
-#Meldet einen Client auf dem Server an.
+#TODO entfernen ? Meldet einen Client auf dem Server an.
 @socketio.on('create_user')
 def create_user(user):
     first_name = user['firstName']

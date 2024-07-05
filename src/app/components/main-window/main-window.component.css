@@ -1,0 +1,33 @@
+.panel-element {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  height: 91vh;
+}
+
+.menu-bar {
+  width: 100%;
+}
+
+::ng-deep .menu-bar .p-menubar.p-component {
+  width: 100%;
+  height: 50px;
+}
+
+::ng-deep .panel-sc.p-panel.p-component {
+  height: 100%;
+}
+
+::ng-deep .panel-sc .p-panel-content {
+  height: 100%;
+}
+
+::ng-deep .panel-sc-large .p-toggleable-content {
+  height: 92% !important;
+}
+
+::ng-deep .panel-sc .p-toggleable-content {
+  height: 84%;
+}
