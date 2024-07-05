@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {
   BrowserModule,
   provideClientHydration,
@@ -28,6 +28,7 @@ import { Menu, MenuModule } from 'primeng/menu';
 import { MapComponent } from './components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Panel, PanelModule } from 'primeng/panel';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { Panel, PanelModule } from 'primeng/panel';
     CardModule,
     MenuModule,
     InputTextModule,
+    TabViewModule,
     FormsModule,
     FloatLabelModule,
     LeafletModule,

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { MapObject } from '../../models/MapObject';
 
 @Component({
   selector: 'app-main-window',
@@ -13,10 +14,25 @@ export class MainWindowComponent implements OnInit {
   deployPestButtonName = 'Deploy Pesticide';
   cancelSurveyButtonName = 'Cancel Survey';
 
+  mapObjects: MapObject[] = [];
+
+  settingsComponentsOpen = true;
+
   items: MenuItem[] = [];
   fields: MenuItem[] = [];
 
   ngOnInit(): void {
+    const mapOne: MapObject = { mapTitle: 'Field1' };
+    const mapTwo: MapObject = { mapTitle: 'Field2' };
+    const mapThree: MapObject = { mapTitle: 'Field3' };
+    this.mapObjects = [mapOne, mapTwo, mapThree];
+  }
+
+  maximizeMap() {
+    this.settingsComponentsOpen = !this.settingsComponentsOpen;
+  }
+
+  setMenuItems() {
     this.items = [
       {
         label: 'Home',

@@ -31,3 +31,22 @@
 ::ng-deep .panel-sc .p-toggleable-content {
   height: 84%;
 }
+
+.tab-panel {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep .tab-panel-sc .p-tabview-panel {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep .tab-panel-sc .p-tabview-panels {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep .tab-panel-sc.p-tabview.p-component {
+  width: 100%;
+}

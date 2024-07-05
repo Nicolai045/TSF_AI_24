@@ -10,19 +10,44 @@
       styleClass="panel-sc panel-sc-large"
       header="Fields"
     >
-      <app-map></app-map>
+      <p-tabView class="flex tab-panel" styleClass="tab-panel-sc">
+        <p-tabPanel
+          *ngFor="let mapObject of mapObjects"
+          [header]="mapObject.mapTitle"
+        >
+          <app-map [initializeMapObject]="mapObject"></app-map>
+        </p-tabPanel>
+      </p-tabView>
+      <ng-template pTemplate="icons">
+        <button class="p-panel-header-icon p-link mr-2" (click)="maximizeMap()">
+          <span
+            [class]="
+              settingsComponentsOpen
+                ? 'pi pi-window-maximize'
+                : 'pi pi-window-minimize'
+            "
+          ></span>
+        </button>
+      </ng-template>
     </p-panel>
-    <div class="flex flex-column" style="width: 70%; max-width: 25vw">
+    <div
+      class="flex flex-column"
+      style="width: 70%; max-width: 25vw"
+      *ngIf="settingsComponentsOpen"
+    >
       <p-panel
         class="panel-element mb-2"
         styleClass="panel-sc"
         header="Drones"
+        *ngIf="settingsComponentsOpen"
       ></p-panel>
       <p-panel
         class="panel-element"
         styleClass="panel-sc"
         header="Pesticides"
-      ></p-panel>
+        *ngIf="settingsComponentsOpen"
+      >
+      </p-panel>
     </div>
   </div>
 </div>

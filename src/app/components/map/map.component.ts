@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Leaflet from 'leaflet';
+import { MapObject } from '../../models/MapObject';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrl: './map.component.css',
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
+  @Input() initializeMapObject!: MapObject;
+
   managementPestButtonName = 'Pesticide Management';
   deployPestButtonName = 'Deploy Pesticide';
   cancelSurveyButtonName = 'Cancel Survey';
+
+  constructor() {}
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   options: Leaflet.MapOptions = {
     layers: getLayers(),
