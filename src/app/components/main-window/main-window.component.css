@@ -25,11 +25,11 @@
 }
 
 ::ng-deep .panel-sc-large .p-toggleable-content {
-  height: 92% !important;
+  height: 93.4% !important;
 }
 
 ::ng-deep .panel-sc .p-toggleable-content {
-  height: 84%;
+  height: 87.1%;
 }
 
 .tab-panel {
@@ -44,9 +44,17 @@
 
 ::ng-deep .tab-panel-sc .p-tabview-panels {
   width: 100%;
-  height: 100%;
+  height: 93.1%;
 }
 
 ::ng-deep .tab-panel-sc.p-tabview.p-component {
   width: 100%;
+}
+
+::ng-deep .icon-header .p-panel-header {
+  padding: 10px;
+}
+
+::ng-deep .panel-map .p-panel-content {
+  padding: 0;
 }

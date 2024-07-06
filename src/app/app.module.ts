@@ -15,6 +15,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from './environments/environments';
 import { PasswordModule } from 'primeng/password';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TieredMenuModule } from 'primeng/tieredmenu';
 
 const config: SocketIoConfig = { url: environment.url, options: {} };
 
@@ -29,6 +30,17 @@ import { MapComponent } from './components/map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Panel, PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
+import { DroneControllerComponent } from './components/drone-controller/drone-controller.component';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
+import { ListboxModule } from 'primeng/listbox';
+import { CalendarModule } from 'primeng/calendar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -37,17 +49,28 @@ import { TabViewModule } from 'primeng/tabview';
     RegisterWindowComponent,
     MainWindowComponent,
     MapComponent,
+    DroneControllerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ButtonModule,
+    ConfirmDialogModule,
+    InputGroupAddonModule,
+    ListboxModule,
+    InputGroupModule,
     CardModule,
+    ToolbarModule,
+    TooltipModule,
+    ToggleButtonModule,
+    InputNumberModule,
+    CalendarModule,
     MenuModule,
     InputTextModule,
     TabViewModule,
     FormsModule,
+    TieredMenuModule,
     FloatLabelModule,
     LeafletModule,
     MenubarModule,
@@ -60,6 +83,7 @@ import { TabViewModule } from 'primeng/tabview';
     provideClientHydration(),
     provideHttpClient(),
     MessageServiceService,
+    ConfirmationService,
   ],
   bootstrap: [AppComponent],
 })

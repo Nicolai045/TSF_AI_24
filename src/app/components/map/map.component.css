@@ -9,3 +9,12 @@
   height: 100%;
   width: 100%;
 }
+
+.toolbar {
+  width: 100%;
+}
+
+::ng-deep .toolbar .p-toolbar {
+  width: 100%;
+  padding: 0.7rem;
+}

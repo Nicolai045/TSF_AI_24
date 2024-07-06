@@ -1,8 +1,44 @@
 <div class="flex flex-column map-container">
   <div class="flex map mb-2" leaflet [leafletOptions]="options"></div>
   <div class="flex flex-row footer-div">
-    <p-button class="mr-2" [label]="managementPestButtonName"></p-button>
-    <p-button class="mr-2" [label]="deployPestButtonName"></p-button>
-    <p-button [label]="cancelSurveyButtonName"></p-button>
+    <p-toolbar class="flex toolbar" styleClass="toolbar">
+      <div class="p-toolbar-group-start">
+        <p-button
+          pTooltip="Settings"
+          size="small"
+          class="flex mr-2"
+          icon="pi pi-cog"
+        >
+        </p-button>
+        <p-button pTooltip="Deploy Pesticides" class="flex mr-2" size="small">
+          <span class="material-symbols-outlined" style="font-size: 1.07rem">
+            household_supplies
+          </span>
+        </p-button>
+      </div>
+      <div class="p-toolbar-group-center">
+        <p-inputNumber
+          pTooltip="Deployment Margin"
+          [(ngModel)]="deploymentMargin"
+          inputId="minmaxfraction"
+          mode="decimal"
+          [minFractionDigits]="2"
+          [maxFractionDigits]="5"
+          size="small"
+          prefix="Margin "
+          suffix="m"
+        >
+        </p-inputNumber>
+      </div>
+      <div class="p-toolbar-group-end">
+        <p-button
+          pTooltip="Cancel Survey"
+          class="flex mr-2"
+          severity="secondary"
+          icon="pi pi-times"
+          size="small"
+        ></p-button>
+      </div>
+    </p-toolbar>
   </div>
 </div>

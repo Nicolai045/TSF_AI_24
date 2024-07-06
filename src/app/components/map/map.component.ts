@@ -13,6 +13,8 @@ export class MapComponent implements OnInit {
   managementPestButtonName = 'Pesticide Management';
   deployPestButtonName = 'Deploy Pesticide';
   cancelSurveyButtonName = 'Cancel Survey';
+  criticalOnly = false;
+  deploymentMargin = 2;
 
   constructor() {}
 
@@ -25,6 +27,8 @@ export class MapComponent implements OnInit {
     zoom: 10,
     center: new Leaflet.LatLng(51.530147, 10.488932),
   };
+
+  createSettingsMenu() {}
 }
 
 export const getLayers = (): Leaflet.Layer[] => {

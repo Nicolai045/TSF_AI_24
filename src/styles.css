@@ -3,3 +3,9 @@
 @import "primeng/resources/primeng.css";
 @import "primeflex/primeflex.css";
 @import "primeicons/primeicons.css";
+@import "material-icons/iconfont/material-icons.css";
+@import "material-symbols";
+
+html {
+  font-size: 13px;
+}

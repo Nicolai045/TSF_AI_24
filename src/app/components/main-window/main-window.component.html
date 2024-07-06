@@ -7,10 +7,14 @@
   <div class="flex flex-row" style="width: 100%; height: 100%">
     <p-panel
       class="panel-element mr-2"
-      styleClass="panel-sc panel-sc-large"
+      styleClass="panel-sc panel-sc-large panel-map icon-header"
       header="Fields"
     >
-      <p-tabView class="flex tab-panel" styleClass="tab-panel-sc">
+      <p-tabView
+        class="flex tab-panel"
+        styleClass="tab-panel-sc"
+        [activeIndex]="currentIndex"
+      >
         <p-tabPanel
           *ngFor="let mapObject of mapObjects"
           [header]="mapObject.mapTitle"
@@ -37,10 +41,22 @@
     >
       <p-panel
         class="panel-element mb-2"
-        styleClass="panel-sc"
+        styleClass="panel-sc icon-header"
         header="Drones"
         *ngIf="settingsComponentsOpen"
-      ></p-panel>
+      >
+        <app-drone-controller
+          [mapObject]="mapObjects[currentIndex]"
+        ></app-drone-controller>
+        <ng-template pTemplate="icons">
+          <button
+            class="p-panel-header-icon p-link"
+            (click)="menu.toggle($event)"
+          >
+            <span class="pi pi-cog"></span>
+          </button>
+        </ng-template>
+      </p-panel>
       <p-panel
         class="panel-element"
         styleClass="panel-sc"
@@ -51,3 +67,5 @@
     </div>
   </div>
 </div>
+
+<p-menu #menu [model]="menuItems" [popup]="true" appendTo="body" />

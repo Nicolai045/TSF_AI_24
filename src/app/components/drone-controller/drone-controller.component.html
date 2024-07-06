@@ -1,0 +1,68 @@
+<div class="flex flex-column container">
+  <p-calendar
+    class="mb-2"
+    styleClass="calendar"
+    [(ngModel)]="date"
+    [showButtonBar]="true"
+    [disabled]="true"
+  >
+  </p-calendar>
+  <p-listbox
+    [options]="mapObject.drones"
+    [(ngModel)]="activeDrones"
+    optionLabel="name"
+    [multiple]="true"
+    styleClass="listbox"
+    [metaKeySelection]="false"
+    [listStyle]="{ 'max-height': '100%' }"
+    class="listbox"
+  >
+    <ng-template let-drone pTemplate="item">
+      <div
+        class="flex align-items-center gap-2"
+        style="width: 100%; justify-content: center"
+      >
+        <div
+          style="width: 3rem; justify-content: center"
+          [class]="
+            drone.loadingState == null
+              ? 'state-grey'
+              : drone.loadingState <= 20
+                ? 'state-red'
+                : drone.loadingState > 50
+                  ? 'state-green'
+                  : 'state-yellow'
+          "
+        >
+          <span class="ml-2" style="color: black">{{
+            drone.loadingState != null ? drone.loadingState + "%" : "N.a."
+          }}</span>
+        </div>
+        <div
+          class="flex"
+          style="width: 5rem; justify-content: center"
+          [class]="drone.status"
+        >
+          <span style="color: black">{{ drone.status }}</span>
+        </div>
+        <div>{{ drone.name }}</div>
+        <p-button
+          icon="pi pi-trash"
+          size="small"
+          text="true"
+          (click)="confirmDelete($event, drone.id)"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-listbox>
+  <p-button
+    class="flex mt-2 add-button"
+    label="Add Drone"
+    [outlined]="true"
+    icon="pi pi-plus"
+    size="small"
+    [style]="{ width: '100%' }"
+  >
+  </p-button>
+</div>
+<p-confirmDialog />

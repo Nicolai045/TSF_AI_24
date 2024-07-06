@@ -1,0 +1,64 @@
+::ng-deep .calendar.p-calendar {
+  width: 100%;
+}
+
+::ng-deep .listbox .p-listbox-item {
+  padding: 0;
+}
+
+.state-grey {
+  background-color: lightslategray;
+  border-radius: 2px;
+}
+
+.state-red {
+  background-color: lightcoral;
+  border-radius: 2px;
+}
+
+.state-yellow {
+  background-color: yellow;
+  border-radius: 2px;
+}
+
+.state-green {
+  background-color: lightgreen;
+  border-radius: 2px;
+}
+
+.add-button {
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.listbox {
+  height: 100%;
+}
+
+.Loading {
+  background-color: grey;
+  border-radius: 2px;
+}
+
+.Returning {
+  background-color: grey;
+  border-radius: 2px;
+}
+
+.Active {
+  background-color: orange;
+  border-radius: 2px;
+}
+
+.Inactive {
+  background-color: grey;
+  border-radius: 2px;
+}
+
+.No_signal {
+  background-color: brown;
+  border-radius: 2px;
+}

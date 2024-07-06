@@ -1,6 +1,8 @@
 import { Component, OnInit, output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MapObject } from '../../models/MapObject';
+import { DroneObject } from '../../models/DroneObject';
+import { DroneStatus } from '../../models/DroneStatus';
 
 @Component({
   selector: 'app-main-window',
@@ -14,17 +16,44 @@ export class MainWindowComponent implements OnInit {
   deployPestButtonName = 'Deploy Pesticide';
   cancelSurveyButtonName = 'Cancel Survey';
 
+  currentIndex: number = 0;
+
   mapObjects: MapObject[] = [];
 
   settingsComponentsOpen = true;
 
   items: MenuItem[] = [];
   fields: MenuItem[] = [];
+  menuItems: any;
 
   ngOnInit(): void {
-    const mapOne: MapObject = { mapTitle: 'Field1' };
-    const mapTwo: MapObject = { mapTitle: 'Field2' };
-    const mapThree: MapObject = { mapTitle: 'Field3' };
+    this.setMenuItems();
+    const testDrones: DroneObject[] = [
+      {
+        name: 'Drone 1',
+        id: 0,
+        isActive: false,
+        loadingState: 80,
+        status: DroneStatus.ACTIVE,
+      },
+      {
+        name: 'Drone 2',
+        id: 1,
+        isActive: false,
+        loadingState: 15,
+        status: DroneStatus.LOADING,
+      },
+      {
+        name: 'Drone 3',
+        id: 2,
+        isActive: false,
+        loadingState: 45,
+        status: DroneStatus.RETURNING,
+      },
+    ];
+    const mapOne: MapObject = { mapTitle: 'Field1', drones: testDrones };
+    const mapTwo: MapObject = { mapTitle: 'Field2', drones: [] };
+    const mapThree: MapObject = { mapTitle: 'Field3', drones: [] };
     this.mapObjects = [mapOne, mapTwo, mapThree];
   }
 
@@ -65,6 +94,17 @@ export class MainWindowComponent implements OnInit {
       },
       {
         label: 'Field 7',
+      },
+    ];
+
+    this.menuItems = [
+      {
+        label: 'Maintainance Scedule',
+        icon: 'pi pi-wrench',
+      },
+      {
+        label: 'Other Settings',
+        icon: 'pi pi-ellipsis-h',
       },
     ];
   }
