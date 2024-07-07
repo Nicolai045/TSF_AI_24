@@ -3,6 +3,9 @@ import { MenuItem } from 'primeng/api';
 import { MapObject } from '../../models/MapObject';
 import { DroneObject } from '../../models/DroneObject';
 import { DroneStatus } from '../../models/DroneStatus';
+import { OverviewObject } from '../../models/OverviewObject';
+import { PesticideCategory } from '../../models/PesticideCategory';
+import { PesticideObject } from '../../models/PesticideObject';
 
 @Component({
   selector: 'app-main-window',
@@ -22,12 +25,66 @@ export class MainWindowComponent implements OnInit {
 
   settingsComponentsOpen = true;
 
+  allPesticides!: PesticideCategory[];
+
   items: MenuItem[] = [];
   fields: MenuItem[] = [];
-  menuItems: any;
 
   ngOnInit(): void {
     this.setMenuItems();
+
+    const pesticide: PesticideObject = {
+      name: 'Pesticide1',
+      id: 1,
+      stockValue: '60',
+      allowedForField: [1, 2],
+    };
+    const pesticide2: PesticideObject = {
+      name: 'Pesticide1',
+      id: 2,
+      stockValue: '60',
+      allowedForField: [1, 2],
+    };
+    const pesticide3: PesticideObject = {
+      name: 'Pesticide1',
+      id: 3,
+      stockValue: '60',
+      allowedForField: [1, 2],
+    };
+
+    const pesticide4: PesticideObject = {
+      name: 'Herbicide 1',
+      id: 4,
+      stockValue: '60',
+      allowedForField: [1, 2],
+    };
+    const pesticide5: PesticideObject = {
+      name: 'Herbicide 2',
+      id: 5,
+      stockValue: '60',
+      allowedForField: [1, 2],
+    };
+    const pesticide6: PesticideObject = {
+      name: 'Herbicide 3',
+      id: 6,
+      stockValue: '60',
+      allowedForField: [1, 2],
+    };
+
+    const testPesticides: PesticideCategory = {
+      name: 'Pesticide',
+      id: 0,
+      pesticides: [pesticide, pesticide2, pesticide3],
+    };
+
+    const testPesticides2: PesticideCategory = {
+      name: 'Herbicide',
+      id: 1,
+      pesticides: [pesticide4, pesticide5, pesticide6],
+    };
+
+    this.allPesticides = [testPesticides, testPesticides2];
+
     const testDrones: DroneObject[] = [
       {
         name: 'Drone 1',
@@ -51,9 +108,13 @@ export class MainWindowComponent implements OnInit {
         status: DroneStatus.RETURNING,
       },
     ];
-    const mapOne: MapObject = { mapTitle: 'Field1', drones: testDrones };
-    const mapTwo: MapObject = { mapTitle: 'Field2', drones: [] };
-    const mapThree: MapObject = { mapTitle: 'Field3', drones: [] };
+    const mapOne: MapObject = {
+      fieldId: 1,
+      mapTitle: 'Field1',
+      drones: testDrones,
+    };
+    const mapTwo: MapObject = { fieldId: 2, mapTitle: 'Field2', drones: [] };
+    const mapThree: MapObject = { fieldId: 3, mapTitle: 'Field3', drones: [] };
     this.mapObjects = [mapOne, mapTwo, mapThree];
   }
 
@@ -94,17 +155,6 @@ export class MainWindowComponent implements OnInit {
       },
       {
         label: 'Field 7',
-      },
-    ];
-
-    this.menuItems = [
-      {
-        label: 'Maintainance Scedule',
-        icon: 'pi pi-wrench',
-      },
-      {
-        label: 'Other Settings',
-        icon: 'pi pi-ellipsis-h',
       },
     ];
   }

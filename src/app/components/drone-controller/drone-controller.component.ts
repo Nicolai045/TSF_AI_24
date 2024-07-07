@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DroneObject } from '../../models/DroneObject';
 import { MapObject } from '../../models/MapObject';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-drone-controller',
@@ -12,12 +12,13 @@ export class DroneControllerComponent implements OnInit {
   @Input() mapObject!: MapObject;
   date!: Date;
   activeDrones: DroneObject[] = [];
-  menuItems: any;
+  menuItems!: MenuItem[];
 
   constructor(private confirmationService: ConfirmationService) {}
   ngOnInit(): void {
     //this.drones = this.mapObject.drones;
     this.date = this.getCurrentDate();
+    this.setMenu();
   }
 
   getCurrentDate(): Date {

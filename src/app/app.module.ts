@@ -41,6 +41,9 @@ import { ListboxModule } from 'primeng/listbox';
 import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { AccordionModule } from 'primeng/accordion';
+import { PesticideControllerComponent } from './components/pesticide-controller/pesticide-controller.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { ConfirmationService } from 'primeng/api';
     MainWindowComponent,
     MapComponent,
     DroneControllerComponent,
+    PesticideControllerComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,7 @@ import { ConfirmationService } from 'primeng/api';
     ListboxModule,
     InputGroupModule,
     CardModule,
+    CheckboxModule,
     ToolbarModule,
     TooltipModule,
     ToggleButtonModule,
@@ -73,6 +78,7 @@ import { ConfirmationService } from 'primeng/api';
     TieredMenuModule,
     FloatLabelModule,
     LeafletModule,
+    AccordionModule,
     MenubarModule,
     PanelModule,
     FilterPipeModule,

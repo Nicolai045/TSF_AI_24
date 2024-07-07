@@ -39,33 +39,19 @@
       style="width: 70%; max-width: 25vw"
       *ngIf="settingsComponentsOpen"
     >
-      <p-panel
-        class="panel-element mb-2"
-        styleClass="panel-sc icon-header"
-        header="Drones"
-        *ngIf="settingsComponentsOpen"
-      >
+      <div class="panel-element" *ngIf="settingsComponentsOpen">
         <app-drone-controller
           [mapObject]="mapObjects[currentIndex]"
         ></app-drone-controller>
-        <ng-template pTemplate="icons">
-          <button
-            class="p-panel-header-icon p-link"
-            (click)="menu.toggle($event)"
-          >
-            <span class="pi pi-cog"></span>
-          </button>
-        </ng-template>
-      </p-panel>
-      <p-panel
-        class="panel-element"
-        styleClass="panel-sc"
-        header="Pesticides"
-        *ngIf="settingsComponentsOpen"
-      >
-      </p-panel>
+      </div>
+      <div class="panel-element" *ngIf="settingsComponentsOpen">
+        <app-pesticide-controller
+          [overviewObject]="{
+            allPesticides: allPesticides,
+            field: mapObjects[currentIndex],
+          }"
+        ></app-pesticide-controller>
+      </div>
     </div>
   </div>
 </div>
-
-<p-menu #menu [model]="menuItems" [popup]="true" appendTo="body" />

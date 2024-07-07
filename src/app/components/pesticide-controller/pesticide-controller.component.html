@@ -1,0 +1,26 @@
+<p-panel
+  class="panel-element"
+  styleClass="panel-sc"
+  header="Allowed Pesticides"
+>
+  <p-accordion [activeIndex]="0">
+    <p-accordionTab
+      [header]="category.name"
+      *ngFor="let category of overviewObject.allPesticides"
+    >
+      <div
+        *ngFor="let pesticide of category.pesticides"
+        class="flex flex-row"
+        style="width: 100%"
+      >
+        <span>{{ pesticide.name }}</span>
+        <p-checkbox
+          [(ngModel)]="pesticide.currentStatus"
+          [binary]="true"
+          inputId="binary"
+          (onChange)="refreshStatus(pesticide)"
+        ></p-checkbox>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</p-panel>
