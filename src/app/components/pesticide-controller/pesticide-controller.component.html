@@ -10,12 +10,16 @@
     >
       <div
         *ngFor="let pesticide of category.pesticides"
-        class="flex flex-row"
+        class="flex flex-row gap-2 mb-2"
         style="width: 100%"
       >
-        <span>{{ pesticide.name }}</span>
+        <div class="flex pesticide-value justify-content-center">
+          <span>{{ pesticide.stockValue + "L" }}</span>
+        </div>
+        <span class="pesticide-name">{{ pesticide.name }}</span>
         <p-checkbox
           [(ngModel)]="pesticide.currentStatus"
+          class="flex p-1"
           [binary]="true"
           inputId="binary"
           (onChange)="refreshStatus(pesticide)"

@@ -16,9 +16,6 @@ import { environment } from './environments/environments';
 import { PasswordModule } from 'primeng/password';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-
-const config: SocketIoConfig = { url: environment.url, options: {} };
-
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MessageServiceService } from './services/message-service/message-service.service';
 import { RegisterWindowComponent } from './components/register-window/register-window.component';
@@ -27,7 +24,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { MenubarModule } from 'primeng/menubar';
 import { Menu, MenuModule } from 'primeng/menu';
 import { MapComponent } from './components/map/map.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Panel, PanelModule } from 'primeng/panel';
 import { TabViewModule } from 'primeng/tabview';
 import { DroneControllerComponent } from './components/drone-controller/drone-controller.component';
@@ -44,6 +40,11 @@ import { ConfirmationService } from 'primeng/api';
 import { AccordionModule } from 'primeng/accordion';
 import { PesticideControllerComponent } from './components/pesticide-controller/pesticide-controller.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { EsriMapComponent } from './components/esri-map/esri-map.component';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+
+const config: SocketIoConfig = { url: environment.url, options: {} };
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     MapComponent,
     DroneControllerComponent,
     PesticideControllerComponent,
+    EsriMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,8 @@ import { CheckboxModule } from 'primeng/checkbox';
     InputGroupAddonModule,
     ListboxModule,
     InputGroupModule,
+    AvatarGroupModule,
+    AvatarModule,
     CardModule,
     CheckboxModule,
     ToolbarModule,
@@ -77,7 +81,6 @@ import { CheckboxModule } from 'primeng/checkbox';
     FormsModule,
     TieredMenuModule,
     FloatLabelModule,
-    LeafletModule,
     AccordionModule,
     MenubarModule,
     PanelModule,

@@ -6,6 +6,8 @@ import { DroneStatus } from '../../models/DroneStatus';
 import { OverviewObject } from '../../models/OverviewObject';
 import { PesticideCategory } from '../../models/PesticideCategory';
 import { PesticideObject } from '../../models/PesticideObject';
+import { UserDataService } from '../../services/user-data/user-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-window',
@@ -29,6 +31,13 @@ export class MainWindowComponent implements OnInit {
 
   items: MenuItem[] = [];
   fields: MenuItem[] = [];
+
+  constructor(
+    private userDataService: UserDataService,
+    private router: Router,
+  ) {
+    //EMPTY
+  }
 
   ngOnInit(): void {
     this.setMenuItems();
@@ -122,6 +131,13 @@ export class MainWindowComponent implements OnInit {
     this.settingsComponentsOpen = !this.settingsComponentsOpen;
   }
 
+  setUserName() {
+    const email = this.userDataService.getCurrentUserMail();
+    if (email != null && email.length > 0) {
+      this.userName = email;
+    }
+  }
+
   setMenuItems() {
     this.items = [
       {
@@ -131,6 +147,28 @@ export class MainWindowComponent implements OnInit {
       {
         label: 'Options',
         icon: 'pi pi-cog',
+      },
+      {
+        label: 'Widgets',
+        icon: 'pi pi-objects-column',
+        items: [
+          {
+            label: 'Weather',
+            icon: 'pi pi-times',
+          },
+          {
+            label: 'Pesticide Controller',
+            icon: 'pi pi-check',
+          },
+          {
+            label: 'Drone Controller',
+            icon: 'pi pi-check',
+          },
+        ],
+      },
+      {
+        label: 'Help',
+        icon: 'pi pi-info-circle',
       },
     ];
 
@@ -157,5 +195,9 @@ export class MainWindowComponent implements OnInit {
         label: 'Field 7',
       },
     ];
+  }
+
+  signOut() {
+    this.router.navigateByUrl('/login');
   }
 }

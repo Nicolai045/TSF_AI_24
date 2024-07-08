@@ -5,6 +5,8 @@ import { Socket } from 'ngx-socket-io';
 import { MessageServiceService } from '../../services/message-service/message-service.service';
 import { CrudMessageService } from '../../services/crud-message/crud-message.service';
 import { LoginWindowMessages } from './login-window-messages';
+import { UserDataService } from '../../services/user-data/user-data.service';
+import { logoImage } from '../../constantStore/logoB64';
 
 @Component({
   selector: 'app-login-window',
@@ -16,6 +18,7 @@ export class LoginWindowComponent {
   public emailValue!: string;
   public passwordValue!: string;
   public errorLabelText!: string;
+  public logoImage!: string;
 
   constructor(
     private socket: Socket,
@@ -23,7 +26,10 @@ export class LoginWindowComponent {
     private messageService: MessageServiceService,
     private crudMessage: CrudMessageService,
     private changeRef: ChangeDetectorRef,
-  ) {}
+    private userDataService: UserDataService,
+  ) {
+    this.logoImage = logoImage;
+  }
 
   async callLogin() {
     await this.checkForDispatch();
@@ -55,6 +61,7 @@ export class LoginWindowComponent {
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/main-window');
+          this.userDataService.setCurrentUserEmail(this.emailValue);
         },
         error: (data) => {
           if (data?.error?.message?.length > 0) {

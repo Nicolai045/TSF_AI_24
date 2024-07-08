@@ -12,7 +12,7 @@
 
 .inner-div-width {
   width: 100%;
-  margin-bottom: 10rem;
+  margin-bottom: 15rem;
 }
 
 .input-width {
@@ -47,28 +47,9 @@
 }
 
 .header {
-  font-size: 4em;
+  font-size: 3em;
   font-weight: bold;
-  color: #a78bfa;
-  /*animation: colorChange 5s infinite;*/
-}
-
-@keyframes colorChange {
-  0% {
-    color: #9c27b0;
-  }
-  25% {
-    color: #ba68c8;
-  }
-  50% {
-    color: #e1bee7;
-  }
-  75% {
-    color: #ab47bc;
-  }
-  100% {
-    color: #9c27b0;
-  }
+  color: #e9ddd1;
 }
 
 .error-label {

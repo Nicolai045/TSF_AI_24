@@ -1,6 +1,20 @@
 <div class="container">
   <div class="flex flex-column inner-div-width">
-    <div class="login-font flex align-self-center mb-5 header">PlantDoc</div>
+    <div class="flex justify-content-center">
+      <img
+        style="
+          display: block;
+          width: 15rem;
+          height: 15rem;
+          justify-self: center;
+        "
+        id="base64image"
+        src="{{ logoImage }}"
+      />
+    </div>
+    <div class="login-font flex align-self-center mb-5 header">
+      Pesticide Manager 24
+    </div>
     <div class="flex input-group flex-column align-items-center">
       <p-floatLabel class="flex mb-5 input-width">
         <input pInputText id="email" [(ngModel)]="emailValue" />

@@ -1,0 +1,10 @@
+.pesticide-name {
+  align-self: center;
+}
+
+.pesticide-value {
+  align-self: center;
+  width: 3rem;
+  background-color: grey;
+  border-radius: 3px;
+}

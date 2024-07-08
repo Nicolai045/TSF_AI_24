@@ -1,7 +1,22 @@
 <div class="container">
   <p-menubar class="flex mb-2 menu-bar" styleClass="menu-bar" [model]="items">
     <ng-template pTemplate="start">
-      <label class="flex mr-2">{{ userName }}</label>
+      <div class="flex flex-row mr-4 gap-2 align-items-center">
+        <p-avatar size="large" icon="pi pi-user" />
+        <label class="flex">{{ userName }}</label>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center">
+        <p-button
+          icon="pi pi-sign-out"
+          severity="secondary"
+          [text]="true"
+          pTooltip="Sign out"
+          (click)="signOut()"
+        >
+        </p-button>
+      </div>
     </ng-template>
   </p-menubar>
   <div class="flex flex-row" style="width: 100%; height: 100%">

@@ -1,5 +1,7 @@
 <div class="flex flex-column map-container">
-  <div class="flex map mb-2" leaflet [leafletOptions]="options"></div>
+  <div class="flex map mb-2">
+    <app-esri-map style="width: 100%; height: 100%"></app-esri-map>
+  </div>
   <div class="flex flex-row footer-div">
     <p-toolbar class="flex toolbar" styleClass="toolbar">
       <div class="p-toolbar-group-start">
