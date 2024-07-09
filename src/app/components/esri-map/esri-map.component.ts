@@ -1,97 +1,97 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import MapView from '@arcgis/core/views/MapView';
 import esriMap from '@arcgis/core/Map';
 import esriConfig from '@arcgis/core/config';
-import BasemapGallery from '@arcgis/core/widgets/BasemapGallery';
-import Expand from '@arcgis/core/widgets/Expand.js';
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
 import Graphic from '@arcgis/core/Graphic';
 import { pointCIMSymbol } from '../../constantStore/esriSymbols';
 import CIMSymbol from '@arcgis/core/symbols/CIMSymbol.js';
+import { EsriProviderService } from '../../esri-services/esri-provider/esri-provider.service';
+import { EsriBasemapService } from '../../esri-services/esri-basemap/esri-basemap.service';
+import { EsriSketchService } from '../../esri-services/esri-sketch/esri-sketch.service';
+import { EsriSimpleGraphicService } from '../../esri-services/esri-simple-graphic/esri-simple-graphic.service';
+import { SimpleGraphicType } from '../../models/SimpleGraphicTypes';
 
 @Component({
   selector: 'app-esri-map',
   templateUrl: './esri-map.component.html',
   styleUrl: './esri-map.component.css',
 })
-export class EsriMapComponent implements OnInit {
-  map!: esriMap;
-  view!: MapView;
+export class EsriMapComponent implements OnInit, AfterViewInit {
   graphicsLayer!: GraphicsLayer;
 
+  constructor(
+    private esriProviderService: EsriProviderService,
+    private basemapService: EsriBasemapService,
+    private sketchService: EsriSketchService,
+    private simpleGraphicsService: EsriSimpleGraphicService,
+  ) {}
+  ngAfterViewInit(): void {
+    this.sketchService.addSketchTool();
+  }
   async ngOnInit() {
     this.createMap();
-    this.addBaseMapGallery();
-    this.createGraphicsLayer();
+    this.basemapService.addBaseMapGallery();
+    this.simpleGraphicsService.createSimpleGraphicsLayer();
+    this.simpleGraphicsService.createPestGraphicsLayer();
 
-    this.addPointToMap(10, 51);
+    //Test Purposes
+    this.simpleGraphicsService.addPointToMap(10, 51, SimpleGraphicType.NORMAL);
+
+    this.simpleGraphicsService.addPointToMap(
+      10.000777,
+      51.00096,
+      SimpleGraphicType.PEST,
+      'Mold',
+      'Around this area is Mold, Please use: Fungicide 1 or 2',
+    );
+    this.simpleGraphicsService.addPointToMap(
+      10.001388,
+      50.99907,
+      SimpleGraphicType.PEST,
+      'Pest',
+      'Around this area is Pest, Please use: Pesticide 2 or 3',
+    );
+    this.simpleGraphicsService.addPointToMap(
+      9.999088,
+      50.998899,
+      SimpleGraphicType.PEST,
+      'Other',
+      'Around this area is Other, Please use: Herbicide 1',
+    );
+    this.simpleGraphicsService.addPointToMap(
+      9.999041,
+      50.999916,
+      SimpleGraphicType.PEST,
+      'Mold',
+      'Around this area is Mold, Please use: Fungicide 1 or 2',
+    );
   }
 
   createMap(): void {
     esriConfig.apiKey = '';
 
-    this.map = new esriMap({
+    const map = new esriMap({
       basemap: 'arcgis/topographic',
     });
 
-    this.view = new MapView({
+    const view = new MapView({
       container: 'viewDiv',
-      map: this.map,
+      map: map,
       zoom: 4,
       center: [10, 51],
     });
+
+    this.esriProviderService.setEsriMap(map);
+    this.esriProviderService.setMapView(view);
   }
 
-  addBaseMapGallery() {
-    const basemapGallery = new BasemapGallery({
-      view: this.view,
+  /*
+  private registerClickEventHandler() {
+    this.view.on('click', (event: __esri.ViewClickEvent) => {
+      const native = event.native as PointerEvent;
+      const hitTestResults = this.view.hitTest(event);
+      console.log(hitTestResults);
     });
-    const basemapGalleryExpand = new Expand({
-      expandIcon: 'analysis', // see https://developers.arcgis.com/calcite-design-system/icons/
-      expandTooltip: 'Change Baselayer',
-      view: this.view,
-      content: basemapGallery,
-    });
-    this.view.ui.add(basemapGalleryExpand, 'top-right');
-  }
-
-  addPointToMap(xValue: number, yValue: number) {
-    const point = {
-      type: 'point',
-      longitude: xValue,
-      latitude: yValue,
-    };
-
-    const simpleMarkerSymbol = {
-      type: 'simple-marker',
-      color: [226, 119, 40],
-      outline: {
-        color: [255, 255, 255],
-        width: 1,
-      },
-    };
-    //CIMSymbol.fromJSON(pointCIMSymbol)
-    const cimSymbol = new CIMSymbol({
-      data: {
-        type: 'CIMSymbolReference',
-        symbol: pointCIMSymbol as any,
-      },
-    });
-    const pointGraphic = new Graphic({
-      geometry: point as any,
-      symbol: cimSymbol,
-      attributes: {
-        Name: 'Field',
-        Description: `Field Located in this location [${xValue}, ${yValue}]`,
-      },
-      popupTemplate: { title: '{Name}', content: '{Description}' },
-    });
-
-    this.graphicsLayer.add(pointGraphic);
-  }
-
-  createGraphicsLayer() {
-    this.graphicsLayer = new GraphicsLayer();
-    this.map.add(this.graphicsLayer);
-  }
+  }*/
 }

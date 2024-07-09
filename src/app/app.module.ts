@@ -43,6 +43,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { EsriMapComponent } from './components/esri-map/esri-map.component';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { PesticideManagerComponent } from './components/pesticide-manager/pesticide-manager.component';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { TableModule } from 'primeng/table';
 
 const config: SocketIoConfig = { url: environment.url, options: {} };
 
@@ -56,6 +59,7 @@ const config: SocketIoConfig = { url: environment.url, options: {} };
     DroneControllerComponent,
     PesticideControllerComponent,
     EsriMapComponent,
+    PesticideManagerComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,11 +73,14 @@ const config: SocketIoConfig = { url: environment.url, options: {} };
     AvatarGroupModule,
     AvatarModule,
     CardModule,
+    TableModule,
+    DynamicDialogModule,
     CheckboxModule,
     ToolbarModule,
     TooltipModule,
     ToggleButtonModule,
     InputNumberModule,
+
     CalendarModule,
     MenuModule,
     InputTextModule,
@@ -93,6 +100,7 @@ const config: SocketIoConfig = { url: environment.url, options: {} };
     provideHttpClient(),
     MessageServiceService,
     ConfirmationService,
+    DialogService,
   ],
   bootstrap: [AppComponent],
 })

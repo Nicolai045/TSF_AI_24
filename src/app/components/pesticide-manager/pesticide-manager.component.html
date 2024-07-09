@@ -1,0 +1,40 @@
+<p-table
+  [columns]="cols"
+  [value]="pesticides"
+  [tableStyle]="{ width: '100%', height: '100%' }"
+  styleClass="p-datatable-sm"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{ col.header }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template
+    class="flex justify-content-center"
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+  >
+    <tr>
+      <td *ngFor="let col of columns">
+        {{ rowData[col.field] }}
+      </td>
+      <td>
+        <p-button size="small" [text]="true" icon="pi pi-plus"></p-button>
+      </td>
+      <td>
+        <p-button size="small" [text]="true" icon="pi pi-minus"></p-button>
+      </td>
+      <td>
+        <p-button
+          size="small"
+          [text]="true"
+          icon="pi pi-tags"
+          pTooltip="Compare prices"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

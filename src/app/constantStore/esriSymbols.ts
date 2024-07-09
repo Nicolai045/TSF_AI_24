@@ -202,3 +202,71 @@ export const pointCIMSymbol = {
     },
   ],
 };
+
+export const pesticideSymbol = {
+  type: 'CIMPointSymbol',
+  symbolLayers: [
+    {
+      type: 'CIMVectorMarker',
+      enable: true,
+      anchorPointUnits: 'Relative',
+      dominantSizeAxis3D: 'Y',
+      size: 8,
+      billboardMode3D: 'FaceNearPlane',
+      frame: {
+        xmin: 0,
+        ymin: 0,
+        xmax: 17,
+        ymax: 17,
+      },
+      markerGraphics: [
+        {
+          type: 'CIMMarkerGraphic',
+          geometry: {
+            rings: [
+              [
+                [13.91, 8.5],
+                [8.5, 0],
+                [3.09, 8.5],
+                [8.5, 17],
+                [13.91, 8.5],
+              ],
+            ],
+          },
+          symbol: {
+            type: 'CIMPolygonSymbol',
+            symbolLayers: [
+              {
+                type: 'CIMSolidStroke',
+                enable: true,
+                capStyle: 'Round',
+                joinStyle: 'Round',
+                lineStyle3D: 'Strip',
+                miterLimit: 10,
+                width: 1,
+                color: [255, 0, 0, 255],
+              },
+              {
+                type: 'CIMSolidFill',
+                enable: true,
+                color: [255, 187, 0, 255],
+              },
+            ],
+          },
+        },
+      ],
+      scaleSymbolsProportionally: true,
+      respectFrame: true,
+    },
+  ],
+};
+
+export const polygonSymbolSF = {
+  type: 'simple-fill', // autocasts as new SimpleFillSymbol()
+  color: [167, 139, 250, 0.2],
+  outline: {
+    // autocasts as new SimpleLineSymbol()
+    color: [167, 139, 250, 0.5],
+    width: 1,
+  },
+};

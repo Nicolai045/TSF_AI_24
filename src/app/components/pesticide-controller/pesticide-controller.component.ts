@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OverviewObject } from '../../models/OverviewObject';
 import { PesticideObject } from '../../models/PesticideObject';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { PesticideManagerComponent } from '../pesticide-manager/pesticide-manager.component';
 
 @Component({
   selector: 'app-pesticide-controller',
@@ -9,6 +11,9 @@ import { PesticideObject } from '../../models/PesticideObject';
 })
 export class PesticideControllerComponent implements OnInit {
   @Input() overviewObject!: OverviewObject;
+  ref: DynamicDialogRef | undefined;
+
+  constructor(private dialogService: DialogService) {}
 
   ngOnInit(): void {
     this.loadStatus();
@@ -61,5 +66,21 @@ export class PesticideControllerComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  show() {
+    this.ref = this.dialogService.open(PesticideManagerComponent, {
+      header: 'Manage Pesticides',
+      data: this.overviewObject,
+      width: '50vw',
+      modal: true,
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '90vw',
+      },
+    });
+    this.ref.onClose.subscribe(() => {
+      console.log('Dialog Closed!');
+    });
   }
 }
