@@ -3,9 +3,6 @@ import MapView from '@arcgis/core/views/MapView';
 import esriMap from '@arcgis/core/Map';
 import esriConfig from '@arcgis/core/config';
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
-import Graphic from '@arcgis/core/Graphic';
-import { pointCIMSymbol } from '../../constantStore/esriSymbols';
-import CIMSymbol from '@arcgis/core/symbols/CIMSymbol.js';
 import { EsriProviderService } from '../../esri-services/esri-provider/esri-provider.service';
 import { EsriBasemapService } from '../../esri-services/esri-basemap/esri-basemap.service';
 import { EsriSketchService } from '../../esri-services/esri-sketch/esri-sketch.service';
@@ -69,7 +66,7 @@ export class EsriMapComponent implements OnInit, AfterViewInit {
   }
 
   createMap(): void {
-    esriConfig.apiKey = '';
+    esriConfig.apiKey = '<Insert API-Key Here>';
 
     const map = new esriMap({
       basemap: 'arcgis/topographic',
